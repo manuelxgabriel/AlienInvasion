@@ -12,8 +12,16 @@ class Ship:
         # Load the ship image and get its rect
         self.image = pygame.image.load('images/ship.bmp')
         self.rect = self.image.get_rect()
-        self.rect.center = self.screen_rect.center
+        self.rect.midbottom = self.screen_rect.midbottom
+
+        # Moving flag
+        self.moving_right = False
 
     def blitme(self):
         """Draw the ship at its current location"""
         self.screen.blit(self.image, self.rect)
+
+    def update(self):
+        """Update the ship's position based on the movement flag"""
+        if self.moving_right:
+            self.rect.x += 1
